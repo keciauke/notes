@@ -1,6 +1,7 @@
 package com.keciauke.notes.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -8,12 +9,12 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="notes")
+@Table(name = "notes")
 public class Note {
 
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
@@ -27,6 +28,7 @@ public class Note {
     private String content;
 
     @Column
+    @JsonIgnore
     private Long rootNoteId;
 
     @Column
@@ -38,6 +40,20 @@ public class Note {
     @NotNull
     @JsonIgnore
     private LocalDateTime modifiedDate;
+
+    @Column
+    @NotNull
+    @JsonIgnore
+    @ColumnDefault("false")
+    private Boolean isDeleted;
+
+    @Column
+    @NotNull
+    @JsonIgnore
+    private Boolean isUpToDate;
+
+    @Column
+    private Long currentVersion;
 
     public Long getId() {
         return id;
@@ -77,5 +93,37 @@ public class Note {
 
     public void setModifiedDate(LocalDateTime modifiedDate) {
         this.modifiedDate = modifiedDate;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
+    }
+
+    public Long getCurrentVersion() {
+        return currentVersion;
+    }
+
+    public void setCurrentVersion(Long currentVersion) {
+        this.currentVersion = currentVersion;
+    }
+
+    public Boolean getUpToDate() {
+        return isUpToDate;
+    }
+
+    public void setUpToDate(Boolean upToDate) {
+        isUpToDate = upToDate;
     }
 }
