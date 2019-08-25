@@ -10,8 +10,6 @@
 -Have a database running on a default port ```3306```
 Run these scripts in mysql console.
 
-```\src\main\resources```
-
 ```create database notesdb;```
 
 ```create user 'kecik'@'localhost' identified by 'kecik';```
