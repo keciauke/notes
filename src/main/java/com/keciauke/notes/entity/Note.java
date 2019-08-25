@@ -28,7 +28,6 @@ public class Note {
     private String content;
 
     @Column
-    @JsonIgnore
     private Long rootNoteId;
 
     @Column
@@ -49,7 +48,6 @@ public class Note {
 
     @Column
     @NotNull
-    @JsonIgnore
     private Boolean isUpToDate;
 
     @Column

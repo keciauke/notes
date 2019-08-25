@@ -79,7 +79,7 @@ public class NoteController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Note> deleteNoteById(@PathVariable final Long id) {
+    public ResponseEntity<Boolean> deleteNoteById(@PathVariable final Long id) {
         try {
             this.noteService.deleteNote(id);
         } catch (NoteNotFoundException e) {
