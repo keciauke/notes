@@ -94,7 +94,7 @@ public class NoteService {
             throw new InvalidDataException();
         }
     }
-
+    @Transactional
     public Boolean deleteNote(final Long id) {
         final Optional<Note> note = this.noteRepository.findById(id);
         if (!note.isPresent()) {
